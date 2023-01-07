@@ -284,6 +284,19 @@ console.log(err);
 cure();
 }); */
 
+//====================chainnig
+function ceck(){
+    return new Promise((resolve, reject) =>{
+        resolve();
+    }).then(() =>{
+        ceckInfo1();
+    }).then(() =>{
+        ceckInfo2();
+    }).catch(() =>{
+        console.log("오류발생");
+    })
+}
+
 //콜백
 
 let number = ['1', '2', '3', '4', '5'];

@@ -271,6 +271,10 @@ console.log(person3);
 let temp1 = person2 ? person2.person2Name : 'there is no name';
 console.log(temp1);
 
+//form안에 있는것 배열로 만들기
+let method = "Put";
+let data101 = $('#temp100').serializeObject();
+
 
 
 

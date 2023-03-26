@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dudam.main.dao.MainDAO">
+
+	<!--     메인 상품 조회     -->
+	<select id="selectMainList" parameterType="mainVO" resultType="egovMap">
+     /* dudam.main.dao.MainDAO.selectMainList*/
+         SELECT ROW_NUM
+              , PRODUCT_CLS_CD
+              , PRODUCT_CD
+              , PRODUCT_NM
+              , PRODUCT_URL
+         FROM(
+              SELECT ROW_NUMBER() OVER(ORDER BY PRODUCT_NO) ROW_NUM
+                , PRODUCT_CLS_CD
+                , PRODUCT_CD
+                , PRODUCT_NM
+                , PRODUCT_URL 
+              FROM DUDAM_PRODUCT
+              WHERE USE_YN = 'Y'
+                AND PRODUCT_CLS_CD = 'D0001'
+             )
+         WHERE ROW_NUM <![CDATA[<]]> 5
+         UNION ALL 
+         SELECT ROW_NUM
+              , PRODUCT_CLS_CD
+              , PRODUCT_CD
+              , PRODUCT_NM
+              , PRODUCT_URL
+         FROM(
+              SELECT ROW_NUMBER() OVER(ORDER BY PRODUCT_NO) ROW_NUM
+                   , PRODUCT_CLS_CD
+                   , PRODUCT_CD
+                   , PRODUCT_NM
+                   , PRODUCT_URL 
+               FROM DUDAM_PRODUCT
+               WHERE USE_YN = 'Y'
+                 AND PRODUCT_CLS_CD = 'D0002'
+              )
+         WHERE ROW_NUM <![CDATA[<]]> 5
+         UNION ALL 
+         SELECT ROW_NUM
+              , PRODUCT_CLS_CD
+              , PRODUCT_CD
+              , PRODUCT_NM
+              , PRODUCT_URL
+         FROM(
+              SELECT ROW_NUMBER() OVER(ORDER BY PRODUCT_NO) ROW_NUM
+                   , PRODUCT_CLS_CD
+                   , PRODUCT_CD
+                   , PRODUCT_NM
+                   , PRODUCT_URL 
+               FROM DUDAM_PRODUCT
+               WHERE USE_YN = 'Y'
+                 AND PRODUCT_CLS_CD = 'D0003'
+              )
+         WHERE ROW_NUM <![CDATA[<]]> 5
+
+	</select>
+	
+	<!--     메인 상품 조회     -->
+	<select id="selectmainProductCnt" parameterType="mainVO" resultType="egovMap">
+     /* dudam.main.dao.MainDAO.selectmainProductCnt*/
+     SELECT COUNT(CASE WHEN PRODUCT_CLS_CD = 'D0001' THEN 1
+                  ELSE NULL
+                  END) AS CAKECNT
+          , COUNT(CASE WHEN PRODUCT_CLS_CD = 'D0002' THEN 1
+                  ELSE NULL
+                  END) AS DRINKCNT
+          , COUNT(CASE WHEN PRODUCT_CLS_CD = 'D0003' THEN 1
+                  ELSE NULL
+                  END) AS THANKSCNT
+     FROM(
+          SELECT PRODUCT_NO 
+               , PRODUCT_CLS_CD
+          FROM DUDAM_PRODUCT
+          WHERE USE_YN = 'Y'
+         )
+	</select>
+	
+	<!--     메인 상품 조회     -->
+	<select id="selectDrinkProductCnt" parameterType="mainVO" resultType="egovMap">
+     /* dudam.main.dao.MainDAO.selectDrinkProductCnt*/
+     SELECT COUNT(CASE WHEN PRODUCT_CLS_CD = 'D0001' THEN 1
+                  ELSE NULL
+                  END) AS CAKECNT
+          , COUNT(CASE WHEN PRODUCT_CLS_CD = 'D0002' THEN 1
+                  ELSE NULL
+                  END) AS DRINKCNT
+          , COUNT(CASE WHEN PRODUCT_CLS_CD = 'D0003' THEN 1
+                  ELSE NULL
+                  END) AS THANKSCNT
+     FROM(
+          SELECT PRODUCT_NO 
+               , PRODUCT_CLS_CD
+          FROM DUDAM_PRODUCT
+          WHERE USE_YN = 'Y'
+         )
+	</select>
+	
+	<!-- 	케이크 더 보기 조회한다. -->
+	<select id="selectcakeMoreList" parameterType="hashMap" resultType="egovMap">
+     /* dudam.main.dao.MainDAO.selectcakeMoreList*/
+      SELECT ROW_NUM
+           , PRODUCT_CD
+           , PRODUCT_NM
+           , PRODUCT_URL
+      FROM(
+           SELECT ROW_NUMBER() OVER(ORDER BY PRODUCT_NO) ROW_NUM
+                , PRODUCT_CD
+                , PRODUCT_NM
+                , PRODUCT_URL 
+           FROM DUDAM_PRODUCT
+           WHERE USE_YN = 'Y'
+           <if test="!productClsCd.equals('') and productClsCd!=null">
+             AND PRODUCT_CLS_CD = #{productClsCd}
+           </if>
+          )
+      WHERE ROW_NUM BETWEEN #{startNum} AND #{endNum}
+ 	 </select>
+	
+	<!-- 	수제청 더 보기 조회한다. -->
+	<select id="selectdrinkMoreList" parameterType="mainVO" resultType="egovMap">
+     /* dudam.main.dao.MainDAO.selectdrinkMoreList*/
+      SELECT ROW_NUM
+           , PRODUCT_CD
+           , PRODUCT_NM
+           , PRODUCT_URL
+      FROM(
+           SELECT ROW_NUMBER() OVER(ORDER BY PRODUCT_NO) ROW_NUM
+                , PRODUCT_CD
+                , PRODUCT_NM
+                , PRODUCT_URL 
+           FROM DUDAM_PRODUCT
+           WHERE USE_YN = 'Y'
+           <if test="!productClsCd.equals('') and productClsCd!=null">
+             AND PRODUCT_CLS_CD = #{productClsCd}
+           </if>
+          )
+      WHERE ROW_NUM BETWEEN #{startNum} AND #{endNum}
+	</select>
+	
+	<!-- 	답례품 더 보기 조회한다. -->
+	<select id="selectThanksMoreList" parameterType="hashMap" resultType="egovMap">
+     /* dudam.main.dao.MainDAO.selectThanksMoreList*/
+      SELECT ROW_NUM
+           , PRODUCT_CD
+           , PRODUCT_NM
+           , PRODUCT_URL
+      FROM(
+           SELECT ROW_NUMBER() OVER(ORDER BY PRODUCT_NO) ROW_NUM
+                , PRODUCT_CD
+                , PRODUCT_NM
+                , PRODUCT_URL 
+           FROM DUDAM_PRODUCT
+           WHERE USE_YN = 'Y'
+           <if test="!productClsCd.equals('') and productClsCd!=null">
+             AND PRODUCT_CLS_CD = #{productClsCd}
+           </if>
+          )
+      WHERE ROW_NUM BETWEEN #{startNum} AND #{endNum}
+	</select>
+	
+	<!-- 	제품 상세 조회한다. -->
+	<select id="selectproductDetail" parameterType="hashMap" resultType="egovMap">
+     /* dudam.main.dao.MainDAO.selectproductDetail*/
+      SELECT PRODUCT_CD
+           , PRODUCT_NM
+           , PRODUCT_DESC
+           , PRODUCT_URL 
+      FROM DUDAM_PRODUCT
+      WHERE PRODUCT_CD = #{productCd}
+        AND USE_YN = 'Y'
+	</select>
+
+</mapper>

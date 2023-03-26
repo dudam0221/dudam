@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+	<!-- SqlSession setup for MyBatis Database Layer -->
+
+<!-- 	XML 수정 시 서버 재기동 없이 반영 되도록 설정 하는 부분 / 
+1. dudam.cmmn.RefreshableSqlSessionFactoryBean 클래스는 만들어야 한다.
+2. <bean id="sqlSession" class="dudam.cmmn.RefreshableSqlSessionFactoryBean">
+3. <property name="mapperLocations" value="classpath:/egovframework/sqlmap/dudam/mappers/*.xml" />
+2023-01-28-->
+
+<!-- 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean"> -->
+	<bean id="sqlSession" class="dudam.cmmn.RefreshableSqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+<!-- 		<property name="configLocation" value="classpath:/egovframework/sqlmap/example/sql-mapper-config.xml" /> -->
+<!-- 		<property name="mapperLocations" value="classpath:/egovframework/sqlmap/example/mappers/*.xml" /> -->
+		<property name="configLocation" value="classpath:/egovframework/sqlmap/dudam/sql-mapper-config.xml" />
+		<property name="mapperLocations" value="classpath:/egovframework/sqlmap/dudam/mappers/*.xml" />
+	</bean>
+
+
+
+	<!-- MapperConfigurer setup for MyBatis Database Layer with @Mapper("deptMapper") in DeptMapper Interface -->
+ 	<bean class="org.egovframe.rte.psl.dataaccess.mapper.MapperConfigurer">
+<!-- 		<property name="basePackage" value="egovframework.example.sample.service.impl" /> -->
+<!-- DAO 위치를 지정 하는 것이다. 만약 dao 위치가 변경된다면 이것도 변경 해주어라 위에 DAO가 저 위치에 있었는데 아래로 변경 하였음 2023-01-25-->
+		<property name="basePackage" value="dudam" />
+	</bean>
+    
+</beans>

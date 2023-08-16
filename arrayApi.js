@@ -60,6 +60,7 @@
     //     return item.enrolled;
     // });
     const result = students.filter(item => item.enrolled)
+    console.log("filter : >>>>>>>>>>>>>")
     console.log(result);
 }
 

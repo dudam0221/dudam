@@ -49,10 +49,10 @@
   <div>
   <form id="testFrm" name="testFrm" method="post">
 	  <div>
-	  	<input type="text" id="noti_row" name="noti_row" value="" />
-	  	<input type="text" id="noti_nm" name="noti_nm" value="" />
-	  	<input type="text" id="noti_reg" name="noti_reg" value="" />
-	  	<input type="text" id="noti_dt" name="noti_dt" value="" />
+	  	<input type="text" id="noti_first" name="noti_first"  value="" />
+	  	<input type="text" id="noti_nm"    name="noti_second" value="" />
+	  	<input type="text" id="noti_reg"   name="noti_reg"    value="" />
+	  	<input type="text" id="noti_dt"    name="noti_dt"     value="" />
 	  </div>
 	  <div id="temp">
 	  		<input type="radio" name="txtRd" value="1" />
@@ -72,13 +72,15 @@
 	  </div>
 	  <div>
 	    <sapan>체크박스</sapan>
-	    <label><input type="checkbox" name="chkAll" value="" />전체</label>
-	  	<label><input type="checkbox" name="chk" value="1" />blue</label>
-	  	<label><input type="checkbox" name="chk" value="2" />yellow</label>
-	  	<label><input type="checkbox" name="chk" value="3" />red</label>
+	    <label><input type="checkbox" id= "chkAll" name="chkAll" value="" />전체</label>
+	  	<label><input type="checkbox" id= "blue" name="blue" value="1" />blue</label>
+	  	<label><input type="checkbox" id= "yellow" name="yellow" value="2" />yellow</label>
+	  	<label><input type="checkbox" id= "red" name="red" value="3" />red</label>
 	  	<input type="button" id="checkBtn" name="" value="체크박스 전송" />
 	  </div>
 	  <button type="button" id="" name="allBtn" onclick="allBtnFun();" value="form_ajax_전송" style="width:100px; height:30px;">전송</button>
+	  
+	  <button type="button" id="" name="" onclick="serializeFun();" value="" style="width:100px; height:30px;">serialize</button>
   </form>
   </div>
   <div>
@@ -130,6 +132,27 @@
   </div>
   <div>
   	<input type="button" id="" name="" onclick="scrollFunc();" value="스크롤페이징"/>
+  </div>
+  <div>
+  	<input type="button" id="btnAdd" name="btnAdd" value="추가버튼 클릭시 테이블 추가" />
+  </div>
+  <div id="list">
+  	<table>
+      <tbody>
+      	 <tr>
+          <th>번호</th>
+          <td>
+      	    <input type="text" id="" name="" value="" />
+      	  </td>
+        </tr>
+        <tr>
+          <th>제품코드</th>
+          <td>
+      	    <input type="text" id="" name="" value="" />
+      	  </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </body>
 </html>

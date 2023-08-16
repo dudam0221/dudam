@@ -25,6 +25,7 @@ let result2 = JSON.stringify(rabbit, function(key,value){
     console.log(value);
     return key === 'name' ? 'ellie' : value;
 });
+console.log("@@@@@@@@@@@@@@@")
 console.log(result2);
 
 const rabbit1= {

@@ -15,6 +15,7 @@
  */
 package dudam.notice.web;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -104,13 +105,13 @@ public class NoticeCtrl {
 		return "noticeDetail";
 	}  
 		
-	  /**
-		* 공지사항 등록화면으로 이동 한다.
-		* @param noticeVO - 조회할 정보가 담긴 noticeVO
-		* @param model
-		* @return "noticeDetail"
-		* @exception Exception
-		*/
+   /*
+	* 공지사항 등록화면으로 이동 한다.
+	* @param noticeVO - 조회할 정보가 담긴 noticeVO
+	* @param model
+	* @return "noticeDetail"
+	* @exception Exception
+	*/
 		@RequestMapping(value = "/noticeRegView.do")
 		public String noticeRegView(NoticeVO noticeVO, Model model) throws Exception {
 		return "noticeReg";
@@ -249,6 +250,7 @@ public class NoticeCtrl {
 	 @PostMapping(value = "/insertCheck.do")
 	 public int insertCheck(@RequestBody Map<String, Object> param) throws Exception {
 	  
+		 Log.debug("param : >>>>>>>>>>>>>>>" + param);
 		  //int result = noticeService.insertRadio(param);
 		  int result = 1;
 		  
@@ -290,7 +292,20 @@ public class NoticeCtrl {
 	 @ResponseBody
 	 @PostMapping(value = "/allBtnFunInsert.do")
 	 public int allBtnFunInsert(@RequestBody Map<String, Object> param) throws Exception {
-	  
+		 
+		 System.out.println("param2 : >>>>>>>>>>" + param);
+		 
+//		 List<Map<String,Object>> info = new ArrayList<>();	 
+//		 info= (List<Map<String,Object>>) param.get("chk");
+//
+//		 // Log.debug("arr : >>>>>>>>>>>" + arr);
+//		 
+//		 for(int i=0; i <info.size(); i++) {
+//             System.out.println("ajax traditional result : " + i +" : "+info.get(i));
+//             
+//             
+//     	    }
+		 
 		  //int result = noticeService.insertRadio(param);
 		  int result = 1;
 		  
@@ -466,5 +481,17 @@ public class NoticeCtrl {
  	    return result;
 // 	    return null;
 
- 	} 	  
+ 	} 	
+ 	  
+ 	 /*
+ 		* 공지사항 등록화면으로 이동 한다.
+ 		* @param noticeVO - 조회할 정보가 담긴 noticeVO
+ 		* @param model
+ 		* @return "noticeDetail"
+ 		* @exception Exception
+ 		*/
+ 			@RequestMapping(value = "/serialize.do")
+ 			public String serialize(NoticeVO noticeVO, Model model) throws Exception {
+ 			return "serialize";
+ 		}
 }

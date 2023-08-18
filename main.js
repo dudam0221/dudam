@@ -82,6 +82,7 @@ let data = names.map(item => {
     return item;
 });
 
+console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>20230818")
 console.log(data);
 //map은 API를 통해서 데이터가 넘어 오는데 object로 온것을 필요 한것만 뽑아서 사용할때
 let personList = [{name : 'Larry', age : 30, ceo : true},
@@ -274,6 +275,8 @@ console.log(temp1);
 //form안에 있는것 배열로 만들기
 let method = "Put";
 let data101 = $('#temp100').serializeObject();
+
+console.log("1111111111111111")
 
 
 

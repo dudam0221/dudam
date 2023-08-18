@@ -1,0 +1,26 @@
+Open in browser -> vscode에서 html을 실행 후 크롬에서 스크립트 확인 하는 방법
+1. Open in browser 설치
+2. alt + b 실행시 브라우져가 크롬으로 설정 하기 위해서는 open in browser에서 extensin setting에서 
+set default browser에 chrome이라고 입력
+3. 실생할 html을 선택 후 html 파일에서 alt + b를 한다.
+4. alt + b 하면 크롬에서 확인 됨
+ 
+-. 실행할 파일 선택 -> Alt + B
+-. 실행할 파일 선택 -> 마우스 오른쪽 버튼 -> Open in Default Brower 선택
+
+liver server -> vscode에서 소스 수정시 browser에서 봐로 확인 하는 것
+1. liver server 설치
+2. alt + L + O 시 자동으로 browser에서 확인 
+
+code speel checker - >코드에서 자동으로 영어 스펠링 검사, 이상한 부분 강조 표시
+
+
+prettier - code formatter -> 코드 정열
+auto rename tag -> 태그 자동 완성
+auto close tag -> 태그 자동 닫아 준다
+
+ES7 React/redux/graphQL/react-Native snippets -> 리액트
+지정한 접두어를 입력하면 템플릿이 입력되는 식이다.
+
+gitlens - git supercharged
+GitLens를 사용하면 Git의 대부분의 기능을 GUI 모드로 VScode에서 사용할 수 있습니다

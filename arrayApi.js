@@ -152,6 +152,7 @@ console.log(result);
         setTimeout(() => resolve("완료"),1000) 
     });
 
+// then안에는 함수가 들어 가야 한다.
 promise().then((o) =>{
 console.log('this' + o);
 }).catch((error) =>{
@@ -259,14 +260,15 @@ function cure(){
 }
 //res는 resolve()함수 않에 있는 텍스트 값을 받는다.
 //err는 reject()함수 않에 있는 텍스트 값을 받는다.
-arriveAtSchool_tube_adv().then(function(res){
+// arriveAtSchool_tube_adv().then(function(res){
+arriveAtSchool_tube_adv().then((res) => {    
     console.log(res);
     return goToSchool();
-}).then(function(){
+}).then(() => {
     return arriveAtSchool();
-}).then(function(){
+}).then(() => {
     return study();
-}).catch(function(err){
+}).catch((err) => {
 console.log(err);
 cure();
 });
@@ -298,7 +300,7 @@ function ceck(){
     })
 }
 
-//콜백
+//===========================================콜백
 
 let number = ['1', '2', '3', '4', '5'];
 

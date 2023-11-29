@@ -44,13 +44,15 @@ function randomQuiz(answer, printYes, printNo){
     }
 }
 
-const printYes = function(){
-    console.log('yes');
-}
+//const printYes = function(){
+//    console.log('yes');
+//}
+const printYes = () => console.log("yes");
 
-const printNo = function(){
-    console.log('no');
-}
+//const printNo = function(){
+//    console.log('no');
+//}
+const printNo = () => console.log("no");
 
 randomQuiz('love you', printYes, printNo);
 
